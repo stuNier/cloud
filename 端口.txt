@@ -1,0 +1,10 @@
+eureka
+7761
+config
+7082
+client
+7081
+gateway
+7777
+sso
+7080
