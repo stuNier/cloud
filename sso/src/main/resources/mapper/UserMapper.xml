@@ -3,12 +3,20 @@
 <mapper namespace="com.zx.sso.api.mapper.UserMapper">
 
     <resultMap id="user" type="com.zx.sso.api.bean.User">
-        <id property="account" column="account"/>
+        <id property="id" column="id"/>
+        <result property="loginId" column="login_id"/>
+        <result property="name" column="name"/>
         <result property="password" column="password"/>
+        <result property="createdTime" column="created_time"/>
+        <result property="updateTime" column="update_time"/>
     </resultMap>
 
-    <select id="queryByAccount" resultMap="user" parameterType="java.lang.String">
-        select account, password from demo.user where account = #{account}
+    <select id="selectByLoginId" resultMap="user" parameterType="java.lang.String">
+        SELECT
+            "id", "login_id", "name", "password", "status", "created_time", "update_time"
+        FROM
+	        "user"."user"
+	    where "id" = #{loginId}
     </select>
 
 </mapper>

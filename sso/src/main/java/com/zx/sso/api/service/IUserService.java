@@ -16,11 +16,11 @@ public interface IUserService {
 
     /**
      * 查询用户
-     * @param account account
+     * @param loginId loginId
      * @return User
      * @author: zhengxin-3@thunisoft.com
      * date: 20-02-19 9:29
      * @version 1.0
      */
-    User queryByAccount(String account);
+    User queryByLoginId(String loginId);
 }

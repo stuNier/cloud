@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zx.order.mapper.CommodityMapper">
+    <resultMap id="commodity" type="com.zx.order.bean.Commodity">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="address" column="address"/>
+        <result property="price" column="price"/>
+        <result property="stock" column="stock"/>
+        <result property="status" column="status"/>
+        <result property="createdTime" column="created_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+    <insert id="insertCommodity" parameterType="com.zx.order.bean.Commodity">
+                INSERT INTO "order"."commodity" ( "id", "name", "address", "price", "stock", "status", "created_time", "update_time" )
+                VALUES
+	              ( #{id}, #{name}, #{address}, #{price}, #{stock}, #{status}, CURRENT_TIMESTAMP , CURRENT_TIMESTAMP )
+        </insert>
+
+    <update id="deleteCommodityById" parameterType="java.lang.String">
+                update "order"."commodity" set "status" = '00' where id = #{id}
+        </update>
+
+    <update id="updateCommodityById" parameterType="com.zx.order.bean.Commodity">
+                update "order"."commodity"
+                set "name"=#{name}, "address"=#{address}, "price"=#{price}, "stock"=#{stock}, "status"=#{status}, "update_time"=CURRENT_TIMESTAMP
+                where id = #{id}
+        </update>
+
+    <select id="selectCommodityByid" resultMap="commodity">
+                SELECT
+                	"id",
+                	"name",
+                	"address",
+                	"price",
+                	"stock",
+                	"status",
+                	"created_time",
+                	"update_time"
+                FROM
+                	"order"."commodity"
+                where
+                  "id" = #{id}
+        </select>
+
+    <select id="selectAllCommodity" resultMap="commodity">
+                SELECT
+                	"id",
+                	"name",
+                	"address",
+                	"price",
+                	"stock",
+                	"status",
+                	"created_time",
+                	"update_time"
+                FROM
+                	"order"."commodity"
+                where
+                  "id" = #{id}
+        </select>
+
+</mapper>

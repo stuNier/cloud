@@ -51,13 +51,13 @@ public class LoginServiceImpl implements ILoginService {
     @Override
     public Object login(HttpServletRequest request, HttpServletResponse response, User user) {
         log.info(user.toString());
-        User result = userService.queryByAccount(user.getAccount());
+        User result = userService.queryByLoginId(user.getLoginId());
         if(null==result || !result.getPassword().equals(user.getPassword())) {
             return ResponseEntity.ok("failed");
         }
         Jedis jedis = jedisPool.getResource();
-        String token = DigestUtils.md5Hex(user.getAccount()+new Date().toString());
-        jedis.set(token, user.getAccount());
+        String token = DigestUtils.md5Hex(user.getLoginId()+new Date().toString());
+        jedis.set(token, user.getLoginId());
         jedis.expire(token, TimeEnum.TWELVE_MINUTES.getCode());
         jedis.close();
         Cookie cookie = new Cookie("userAccount",token);

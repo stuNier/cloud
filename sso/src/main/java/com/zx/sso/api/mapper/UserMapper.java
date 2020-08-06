@@ -15,13 +15,14 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface UserMapper {
+
     /**
      * 查询
-     * @param account 账号
+     * @param loginId 账号
      * @return User
      * author: zhengxin@thunisoft.com
      * date: 19-09-10 15:07
      * version 1.0
      */
-    User queryByAccount(String account);
+    User selectByLoginId(String loginId);
 }

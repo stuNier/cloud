@@ -4,6 +4,8 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.util.Date;
+
 /**
  * Title: User
  * Description: user
@@ -18,9 +20,21 @@ import lombok.Data;
 @ApiModel("用户实体")
 public class User {
 
-    @ApiModelProperty("用户账号")
-    private String account;
+    @ApiModelProperty("主键")
+    private String id;
+
+    @ApiModelProperty("loginId")
+    private String loginId;
+
+    @ApiModelProperty("用户名")
+    private String name;
 
     @ApiModelProperty("用户登录密码")
     private String password;
+
+    @ApiModelProperty("创建时间")
+    private Date createdTime;
+
+    @ApiModelProperty("更新时间")
+    private Date updateTime;
 }

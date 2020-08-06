@@ -23,7 +23,7 @@ public class UserServiceImpl implements IUserService {
     private UserMapper userMapper;
 
     @Override
-    public User queryByAccount(String account) {
-        return userMapper.queryByAccount(account);
+    public User queryByLoginId(String loginId) {
+        return userMapper.selectByLoginId(loginId);
     }
 }

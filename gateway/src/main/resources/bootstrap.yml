@@ -27,6 +27,9 @@ zuul:
     sso-server:
       path: /sso/**
       serviceId: sso-server
+    order:
+      path: /order/**
+      serviceId: order
 
 logging:
   level:

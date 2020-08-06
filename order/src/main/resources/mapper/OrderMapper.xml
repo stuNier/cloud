@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zx.order.mapper.OrderMapper">
+
+    <resultMap id="order" type="com.zx.order.bean.Order">
+        <id property="id" column="id"/>
+        <result property="userId" column="user_id"/>
+        <result property="commodityId" column="commodity_id"/>
+        <result property="number" column="number"/>
+        <result property="totalPrice" column="total_price"/>
+        <result property="status" column="status"/>
+        <result property="createdTime" column="created_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+    <insert id="insertOrder" parameterType="com.zx.order.bean.Order">
+        INSERT INTO "order"."order" ( "id", "user_id", "commodity_id", "number", "total_price", "status", "created_time", "update_time" )
+        VALUES
+	      ( #{id}, #{userId}, #{commodityid}, #{number}, #{totalprice}, #{status},CURRENT_TIMESTAMP , CURRENT_TIMESTAMP )
+    </insert>
+
+    <update id="deleteOrderById" parameterType="java.lang.String">
+        update "order"."order" set "status" = '00', "update_time" = CURRENT_TIMESTAMP  where id = #{id}
+    </update>
+
+    <update id="updateOrderById" parameterType="com.zx.order.bean.Order">
+        update "order"."order"
+        set "number" = #{number}, "total_price" = #{totalprice}, "status" = #{status}, "update_time" = CURRENT_TIMESTAMP
+        where "id" = #{id}
+    </update>
+
+    <select id="selectOrderById" resultMap="order">
+        SELECT
+            "id", "user_id", "commodity_id", "number", "total_price", "status", "created_time", "update_time"
+        FROM
+            "order"."order"
+        where "id" = #{id} and "status" = '01'
+    </select>
+
+    <select id="selectOrderByUserId" parameterType="java.lang.String" resultMap="order">
+        SELECT
+            "id", "user_id", "commodity_id", "number", "total_price", "status", "created_time", "update_time"
+        FROM
+            "order"."order"
+        where and "status" = '01'
+    </select>
+</mapper>

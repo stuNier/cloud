@@ -6,7 +6,7 @@ eureka:
       defaultZone: http://127.0.0.1:7761/eureka/
 spring:
   application:
-    name: sso-server
+    name: order
   profiles:
     active: dev
   cloud:
@@ -16,28 +16,22 @@ spring:
       discovery:
         enabled: true
         service-id: config
-
-  datasource:
-    driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://127.0.0.1:5432/cloud
-    username: postgres
-    password: 123456
-  thymeleaf:
-    cache: false
-
   redis:
     host: 127.0.0.1
     port: 6379
     password: 123456
     timeout: 3000
-
-mybatis:
-  mapper-locations: classpath:mapper/*Mapper.xml
-  config-location: classpath:config/sqlMapConfig.xml
-
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://127.0.0.1:5432/cloud
+    username: postgres
+    password: 123456
 server:
-  port: 7080
+  port: 7083
 
 logging:
   level:
     root: info
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  config-location: classpath:config/sqlMapConfig.xml
